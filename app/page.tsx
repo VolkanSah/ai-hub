@@ -2,7 +2,7 @@
 // <ai-hub>
 // Universal AI WEB HUB — Obsidian Glass Edition
 // Copyright 2026 Volkan Kücükbudak
-// https://github.com/VolkanSah/ai-hub
+// https://github.com/VolkanSah/Universal-MCP-Hub-sandboxed
 //
 // Licensed under Apache License 2.0 AND ESOL 1.1 (and later)
 // You may not remove this header or misrepresent authorship.
@@ -61,7 +61,7 @@ const SUPPORTED_TEXT = [
 const DEFAULT_CONFIG: HubConfig = {
   hf_token:'', hub_url:'', default_provider:'', default_model:'',
   default_tool:'llm_complete', hf_space_url:'',
-  github_url:'https://github.com/VolkanSah/ai-hub',
+  github_url:'https://github.com/VolkanSah/Universal-MCP-Hub-sandboxed',
   version: APP_VERSION,
 };
 // </ai-hub:constants>
@@ -270,7 +270,7 @@ function Field({ label, type='text', value, onChange, placeholder='' }: {
 // <ai-hub:sidebar>
 // =============================================================================
 function Sidebar({
-  open, sessions, activeId, tools,
+  open, sessions, activeId, tools, providers, models,
   selectedTool, selectedProvider, selectedModel,
   onSelectSession, onNewChat, onDeleteSession,
   onSelectTool, onSelectProvider, onSelectModel, onExport, config,
@@ -784,8 +784,8 @@ export default function VolkanNextHub() {
           <div style={{ display:'flex', alignItems:'center', gap:2 }}>
             {([
               { label:'GitHub',   href: config.github_url   || 'https://github.com/VolkanSah',                         color:'#a78bfa' },
-              { label:'HF Space', href: config.hf_space_url || 'https://huggingface.co/spaces/codey-lab/Multi-LLM-API-Gateway/tree/main',                               color:'#7dd3fc' },
-              { label:'AI Hub',  href: 'https://github.com/VolkanSah/Multi-LLM-API-Gateway',                    color:'#7fffb2' },
+              { label:'HF Space', href: config.hf_space_url || 'https://huggingface.co',                               color:'#7dd3fc' },
+              { label:'MCP Hub',  href: 'https://github.com/VolkanSah/Universal-MCP-Hub-sandboxed',                    color:'#7fffb2' },
             ] as {label:string;href:string;color:string}[]).map(l=>(
               <a key={l.label} href={l.href} target="_blank" rel="noopener noreferrer" style={{
                 padding:'5px 12px', borderRadius:6, fontSize:11, fontFamily:'monospace',
@@ -1093,9 +1093,8 @@ export default function VolkanNextHub() {
     </>
   );
 }
-
 // =============================================================================
 // </ai-hub:main>
 // © 2026 Volkan Kücükbudak — Apache 2.0 + ESOL 1.1
-// https://github.com/VolkanSah/ai-hub
+// https://github.com/VolkanSah/Universal-MCP-Hub-sandboxed
 // =============================================================================
