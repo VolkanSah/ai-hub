@@ -61,7 +61,7 @@ const SUPPORTED_TEXT = [
 const DEFAULT_CONFIG: HubConfig = {
   hf_token:'', hub_url:'', default_provider:'', default_model:'',
   default_tool:'llm_complete', hf_space_url:'',
-  github_url:'https://github.com/VolkanSah/ai-hub',
+  github_url:'https://github.com/VolkanSah/Universal-MCP-Hub-sandboxed',
   version: APP_VERSION,
 };
 // </ai-hub:constants>
@@ -754,7 +754,7 @@ export default function VolkanNextHub() {
             {([
               { label:'GitHub',   href: config.github_url   || 'https://github.com/VolkanSah',                         color:'#a78bfa' },
               { label:'HF Space', href: config.hf_space_url || 'https://huggingface.co/spaces/codey-lab/Multi-LLM-API-Gateway/tree/main',                               color:'#7dd3fc' },
-              { label:'AI WEB Hub',  href: 'https://github.com/VolkanSah/ai-hub',                    color:'#7fffb2' },
+              { label:'Universal AI Hub',  href: 'https://github.com/VolkanSah/Multi-LLM-API-Gateway',                    color:'#7fffb2' },
             ] as {label:string;href:string;color:string}[]).map(l=>(
               <a key={l.label} href={l.href} target="_blank" rel="noopener noreferrer" style={{
                 padding:'5px 12px', borderRadius:6, fontSize:11, fontFamily:'monospace',
@@ -1009,13 +1009,7 @@ export default function VolkanNextHub() {
                   <Field label="Default Provider"                  value={config.default_provider} onChange={cfgSet('default_provider')} placeholder="openai, anthropic…"/>
                   <Field label="Default Model"                     value={config.default_model}    onChange={cfgSet('default_model')}    placeholder="gpt-4o, claude-3-5-sonnet…"/>
                 </Panel>
-                <Panel style={{ padding:28,marginBottom:16 }}>
-                  <div style={{ fontFamily:"'Syne',sans-serif",fontSize:15,fontWeight:700,color:'#c4b5fd',marginBottom:24 }}>
-                    ◉ Project Links
-                  </div>
-                  <Field label="GitHub URL"      value={config.github_url}   onChange={cfgSet('github_url')}   placeholder="https://github.com/…"/>
-                  <Field label="HuggingFace URL" value={config.hf_space_url} onChange={cfgSet('hf_space_url')} placeholder="https://huggingface.co/spaces/…"/>
-                </Panel>
+
                 <button onClick={saveSettings} style={{
                   width:'100%',padding:'13px',
                   background:'linear-gradient(135deg,#5e4afc,#a78bfa)',
@@ -1069,5 +1063,5 @@ export default function VolkanNextHub() {
 // =============================================================================
 // </ai-hub:main>
 // © 2026 Volkan Kücükbudak — Apache 2.0 + ESOL 1.1
-// https://github.com/VolkanSah/Universal-MCP-Hub-sandboxed
+// https://github.com/VolkanSah/ai-hub
 // =============================================================================
