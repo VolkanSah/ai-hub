@@ -7,7 +7,7 @@ This is a high-performance **Next.js Web App** designed to interface with the **
 ### Zero-Bloat Strategy
 I don't like local Node.js environments or heavy dependencies. This project is built to be deployed directly via **GitHub to Vercel**. No `npm install` or local `node_modules` required on your machine.
 
-* **Pure Web UI**: Mirroring the logic of the [Universal MCP Desktop Client](https://github.com/VolkanSah/Universal-MCP-Hub-sandboxed).
+* **Pure Web UI**: Mirroring the logic of the [Universal MCP Desktop Client](https://github.com/VolkanSah/Multi-LLM-API-Gateway)
 * **Direct Connect**: Communicates directly from your browser to your Hub instance.
 * **Security**: HF Tokens and Hub URLs are stored locally in your browser's `localStorage`. No data is stored on Vercel.
 
