@@ -1,5 +1,7 @@
 # ⬡ Universal AI Hub - Web Client
 
+![Universal AI HUB WEB UI](ui.jpg)
+
 This is a high-performance **Next.js Web App** designed to interface with the **Universal MCP Hub** (aka Universal AI Hub). 
 
 ### Zero-Bloat Strategy
