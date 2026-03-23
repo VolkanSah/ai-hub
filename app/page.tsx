@@ -61,7 +61,7 @@ const SUPPORTED_TEXT = [
 const DEFAULT_CONFIG: HubConfig = {
   hf_token:'', hub_url:'', default_provider:'', default_model:'',
   default_tool:'llm_complete', hf_space_url:'',
-  github_url:'https://github.com/VolkanSah/Universal-MCP-Hub-sandboxed',
+  github_url:'https://github.com/VolkanSah/ai-hub',
   version: APP_VERSION,
 };
 // </ai-hub:constants>
@@ -273,13 +273,14 @@ function Sidebar({
   open, sessions, activeId, tools,
   selectedTool, selectedProvider, selectedModel,
   onSelectSession, onNewChat, onDeleteSession,
-  onSelectTool, onExport, config,
+  onSelectTool, onSelectProvider, onSelectModel, onExport, config,
 }: {
   open:boolean; sessions:ChatSession[]; activeId:string; tools:string[];
   providers:string[]; models:string[];
   selectedTool:string; selectedProvider:string; selectedModel:string;
   onSelectSession:(id:string)=>void; onNewChat:()=>void;
   onDeleteSession:(id:string)=>void; onSelectTool:(t:string)=>void;
+  onSelectProvider:(p:string)=>void; onSelectModel:(m:string)=>void;
   onExport:(id:string,fmt:'json'|'txt'|'csv')=>void; config:HubConfig;
 }) {
   const [exportOpen, setExportOpen] = useState<string|null>(null);
@@ -413,17 +414,47 @@ function Sidebar({
           <div style={{ fontSize:9, color:'#4b5563', letterSpacing:'.1em', textTransform:'uppercase', marginBottom:8 }}>
             Active Config
           </div>
-          {([['Provider',selectedProvider],['Model',selectedModel],['Tool',selectedTool]] as [string,string][]).map(([k,v])=>(
-            <div key={k} style={{ display:'flex', justifyContent:'space-between', marginBottom:4 }}>
-              <span style={{ fontSize:10, color:'#4b5563', fontFamily:'monospace' }}>{k}</span>
-              <span style={{
-                fontSize:10, color:'#a78bfa', fontFamily:'monospace',
-                maxWidth:140, overflow:'hidden', textOverflow:'ellipsis', whiteSpace:'nowrap',
-              }}>{v}</span>
-            </div>
-          ))}
+          {/* Tool */}
+          <div style={{ marginBottom:8 }}>
+            <div style={{ fontSize:9,color:'#4b5563',fontFamily:'monospace',marginBottom:4,letterSpacing:'.06em',textTransform:'uppercase' }}>Tool</div>
+            <select value={selectedTool} onChange={e=>onSelectTool(e.target.value)} style={{
+              width:'100%',background:'rgba(255,255,255,.04)',border:'1px solid rgba(255,255,255,.1)',
+              borderRadius:6,padding:'5px 8px',color:'#c4b5fd',fontSize:11,
+              fontFamily:'monospace',outline:'none',cursor:'pointer',
+            }}>
+              {(tools.length>0?tools:['llm_complete']).map(t=>(
+                <option key={t} value={t} style={{ background:'#1a1625' }}>{t}</option>
+              ))}
+            </select>
+          </div>
+          {/* Provider */}
+          <div style={{ marginBottom:8 }}>
+            <div style={{ fontSize:9,color:'#4b5563',fontFamily:'monospace',marginBottom:4,letterSpacing:'.06em',textTransform:'uppercase' }}>Provider</div>
+            <select value={selectedProvider} onChange={e=>onSelectProvider(e.target.value)} style={{
+              width:'100%',background:'rgba(255,255,255,.04)',border:'1px solid rgba(255,255,255,.1)',
+              borderRadius:6,padding:'5px 8px',color:'#c4b5fd',fontSize:11,
+              fontFamily:'monospace',outline:'none',cursor:'pointer',
+            }}>
+              {providers.map(p=>(
+                <option key={p} value={p} style={{ background:'#1a1625' }}>{p}</option>
+              ))}
+            </select>
+          </div>
+          {/* Model */}
+          <div style={{ marginBottom:8 }}>
+            <div style={{ fontSize:9,color:'#4b5563',fontFamily:'monospace',marginBottom:4,letterSpacing:'.06em',textTransform:'uppercase' }}>Model</div>
+            <select value={selectedModel} onChange={e=>onSelectModel(e.target.value)} style={{
+              width:'100%',background:'rgba(255,255,255,.04)',border:'1px solid rgba(255,255,255,.1)',
+              borderRadius:6,padding:'5px 8px',color:'#c4b5fd',fontSize:11,
+              fontFamily:'monospace',outline:'none',cursor:'pointer',
+            }}>
+              {models.map(m=>(
+                <option key={m} value={m} style={{ background:'#1a1625' }}>{m}</option>
+              ))}
+            </select>
+          </div>
           {config.hub_url && (
-            <div style={{ marginTop:8, fontSize:9, color:'#374151', fontFamily:'monospace', overflow:'hidden', textOverflow:'ellipsis', whiteSpace:'nowrap' }}>
+            <div style={{ marginTop:4,fontSize:9,color:'#374151',fontFamily:'monospace',overflow:'hidden',textOverflow:'ellipsis',whiteSpace:'nowrap' }}>
               {config.hub_url}
             </div>
           )}
@@ -754,7 +785,7 @@ export default function VolkanNextHub() {
             {([
               { label:'GitHub',   href: config.github_url   || 'https://github.com/VolkanSah',                         color:'#a78bfa' },
               { label:'HF Space', href: config.hf_space_url || 'https://huggingface.co/spaces/codey-lab/Multi-LLM-API-Gateway/tree/main',                               color:'#7dd3fc' },
-              { label:'Universal AI Hub',  href: 'https://github.com/VolkanSah/Multi-LLM-API-Gateway',                    color:'#7fffb2' },
+              { label:'AI Hub',  href: 'https://github.com/VolkanSah/Multi-LLM-API-Gateway',                    color:'#7fffb2' },
             ] as {label:string;href:string;color:string}[]).map(l=>(
               <a key={l.label} href={l.href} target="_blank" rel="noopener noreferrer" style={{
                 padding:'5px 12px', borderRadius:6, fontSize:11, fontFamily:'monospace',
@@ -1049,6 +1080,8 @@ export default function VolkanNextHub() {
             onNewChat={newChat}
             onDeleteSession={deleteSession}
             onSelectTool={(t)=>{ setSelectedTool(t); setTab('chat'); }}
+            onSelectProvider={setSelectedProvider}
+            onSelectModel={setSelectedModel}
             onExport={handleExport}
             config={config}
           />
@@ -1060,6 +1093,7 @@ export default function VolkanNextHub() {
     </>
   );
 }
+
 // =============================================================================
 // </ai-hub:main>
 // © 2026 Volkan Kücükbudak — Apache 2.0 + ESOL 1.1
