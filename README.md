@@ -1,6 +1,21 @@
 # ⬡ Universal AI Hub - Web Client
 
-![Universal AI HUB WEB UI](ui.jpg)
+![Universal AI HUB WEB UI](img/ui.jpg)
+
+---
+<details>
+<summary>Screenshots  </summary>
+
+##### Settings
+![Universal AI HUB WEB UI](img/web-setings.jpg)
+
+##### Conversation with fallback
+
+![Universal AI HUB WEB UI](img/00-a.jpg)
+
+</details>
+
+---
 
 This is a high-performance **Next.js Web App** designed to interface with the **Universal MCP Hub** (aka Universal AI Hub). 
 
@@ -31,3 +46,6 @@ I don't like local Node.js environments or heavy dependencies. This project is b
 > The [ESOL](ESOL) and the [ZERO-TOLERANCE](ESOL_ZERO_TOLERANCE.md) is a mandatory, non-severable condition of use.
 > 
 > By using this software, you agree to all ethical constraints defined in the ESOL v1.1.
+
+
+
